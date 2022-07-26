@@ -1,45 +1,54 @@
-# template-empty
-_description: An empty template for your code sample_
+# java-email-send-form
 
-Please include this sample in the [org readme](https://github.com/nylas-samples/.github/blob/main/profile/README.md)?
+This sample will show you to easily grab information for a web form and send it in an email with the Nylas Java SDK.
 
-<br />
+## Setup
 
-## Installation
+### System dependencies
 
-The recommended way to use this sample is ...
+- Java 18.0.2
+- Maven 3.8.6
 
-You can also clone the repository ...
+### Gather environment variables
 
-You'll find more detailed instructions ...
+You'll need the following values:
+
+```text
+ACCESS_TOKEN = ""
+```
+
+Add the above values to a new `.env` file:
+
+```bash
+$ touch .env # Then add your env variables
+```
+
+### Install dependencies
+
+```bash
+org.slf4j / slf4j-simple / 1.7.25
+com.sparkjava / spark-core / 2.9.4
+com.nylas.sdk / nylas-java-sdk / 1.15.0
+io.github.cdimascio / dotenv-java / 2.2.4
+```
+
+## Usage
+
+Run the web server using the `maven` command:
+
+```bash
+$ mvn exec:java -Dexec.mainClass="Main"
+```
+
+On your web broser, type the following:
+
+```bash
+localhost:4567/feedback
+```
+
+When your message is successfully sent, you will receive a message on the web page and will be redirected to the form
 
 
-<br />
+## Learn more
 
-
-## FAQ
-
-Q: 
-
-A: 
-
-
-<br />
-
-## Get support
-
-If you found a bug or want to suggest a new [feature/use case/sample], please file an issue.
-
-If you have questions, comments, or need help with code, we're here to help:
-- Email us at support@nylas.com
-
-<br />
-
-## Contributing
-
-...
-
-<br />
-
-## Authors
-- @
+Visit our [Nylas Java SDK documentation](https://developer.nylas.com/docs/developer-tools/sdk/java-sdk/) to learn more.
