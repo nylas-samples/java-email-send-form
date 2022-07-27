@@ -32,6 +32,14 @@ com.nylas.sdk / nylas-java-sdk / 1.15.0
 io.github.cdimascio / dotenv-java / 2.2.4
 ```
 
+# Compilation
+
+To compile the comment we need to use this `maven` command:
+
+```bash
+mvn clean compile
+```
+
 ## Usage
 
 Run the web server using the `maven` command:
