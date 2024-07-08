@@ -18,7 +18,7 @@ public class Main {
     static String SendEmail(String name, String email, String comments){
         Dotenv dotenv = Dotenv.load();
         // Initialize the Nylas client
-        NylasClient nylas = new NylasClient.Builder(dotenv.get("V3_TOKEN_API")).build();
+        NylasClient nylas = new NylasClient.Builder(dotenv.get("V3_TOKEN_API")).apiUri(dotenv.get("NYLAS_API_URI")).build();
 
         List<EmailName> emailNames = new ArrayList<>();
         emailNames.add(new EmailName(email, name));
