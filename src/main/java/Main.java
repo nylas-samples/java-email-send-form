@@ -1,18 +1,14 @@
 //Import Java Utilities
 import java.lang.Exception;
-import java.util.Arrays;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 //Import Nylas Packages
-import com.nylas.NylasAccount;
 import com.nylas.NylasClient;
-import com.nylas.RequestFailedException;
-import com.nylas.Draft;
-import com.nylas.NameEmail;
+import com.nylas.models.*;
 
 //Import DotEnv to handle .env files
 import io.github.cdimascio.dotenv.Dotenv;
-import io.github.cdimascio.dotenv.DotenvException;
 
 //Import to handle the SparkJava Web Framework
 import static spark.Spark.*;
@@ -21,21 +17,18 @@ public class Main {
 
     static String SendEmail(String name, String email, String comments){
         Dotenv dotenv = Dotenv.load();
-        // Create the client object
-        NylasClient client = new NylasClient();
-        // Connect it to Nylas using the Access Token from the .env file
-        NylasAccount account = client.account(dotenv.get("ACCESS_TOKEN"));
+        // Initialize the Nylas client
+        NylasClient nylas = new NylasClient.Builder(dotenv.get("V3_TOKEN_API")).apiUri(dotenv.get("NYLAS_API_URI")).build();
 
-        //Create a new draft
-        Draft draft = new Draft();
-        //Set the subject of the message
-        draft.setSubject("Complaint from " + name + " - " + email);
-        draft.setBody(comments);
-        draft.setTo(Arrays.asList(new NameEmail("Blag", "alvaro.t@nylas.com")));
+        List<EmailName> emailNames = new ArrayList<>();
+        emailNames.add(new EmailName(email, name));
 
         try {
-            //Send the email draft
-            account.drafts().send(draft);
+            SendMessageRequest requestBody = new SendMessageRequest.Builder(emailNames).
+                    subject("Complaint from " + name + " - " + email).
+                    body(comments).build();
+
+            nylas.messages().send(dotenv.get("GRANT_ID"), requestBody);
             //Print a friendly message
             return ("<!DOCTYPE html>" +
                     "<html><head>" +
@@ -55,7 +48,7 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) throws RequestFailedException, IOException{
+    public static void main(String[] args) throws NylasSdkTimeoutError, NylasApiError{
         get("/feedback", (request, response) ->
                 "<!DOCTYPE html>" +
                         "<html>" +

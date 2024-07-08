@@ -14,7 +14,8 @@ This sample will show you to easily grab information for a web form and send it 
 You'll need the following values:
 
 ```text
-ACCESS_TOKEN = ""
+V3_TOKEN_API = <API_KEY>
+GRANT_ID = <GRANT_ID>
 ```
 
 Add the above values to a new `.env` file:
@@ -26,10 +27,10 @@ $ touch .env # Then add your env variables
 ### Install dependencies
 
 ```bash
-org.slf4j / slf4j-simple / 1.7.25
+org.slf4j / slf4j-simple / 2.0.9
 com.sparkjava / spark-core / 2.9.4
-com.nylas.sdk / nylas-java-sdk / 1.15.0
-io.github.cdimascio / dotenv-java / 2.2.4
+com.nylas.sdk / nylas / 2.0.0-beta.3
+io.github.cdimascio / dotenv-java / 3.0.0
 ```
 
 # Compilation
