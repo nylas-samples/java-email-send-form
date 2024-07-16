@@ -14,8 +14,9 @@ This sample will show you to easily grab information for a web form and send it 
 You'll need the following values:
 
 ```text
-V3_TOKEN_API = <API_KEY>
-GRANT_ID = <GRANT_ID>
+NYLAS_API_KEY=
+NYLAS_API_URI=
+NYLAS_GRANT_ID=
 ```
 
 Add the above values to a new `.env` file:
@@ -24,13 +25,10 @@ Add the above values to a new `.env` file:
 $ touch .env # Then add your env variables
 ```
 
-### Install dependencies
+### Install dependenciese
 
 ```bash
-org.slf4j / slf4j-simple / 2.0.9
-com.sparkjava / spark-core / 2.9.4
-com.nylas.sdk / nylas / 2.0.0-beta.3
-io.github.cdimascio / dotenv-java / 3.0.0
+mvn clean install
 ```
 
 # Compilation
@@ -49,11 +47,7 @@ Run the web server using the `maven` command:
 $ mvn exec:java -Dexec.mainClass="Main"
 ```
 
-On your web broser, type the following:
-
-```bash
-localhost:4567/feedback
-```
+On your web broser goto `localhost:4567/feedback` to complete the email form.
 
 When your message is successfully sent, you will receive a message on the web page and will be redirected to the form
 

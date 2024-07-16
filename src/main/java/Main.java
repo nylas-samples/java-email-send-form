@@ -18,7 +18,7 @@ public class Main {
     static String SendEmail(String name, String email, String comments){
         Dotenv dotenv = Dotenv.load();
         // Initialize the Nylas client
-        NylasClient nylas = new NylasClient.Builder(dotenv.get("V3_TOKEN_API")).apiUri(dotenv.get("NYLAS_API_URI")).build();
+        NylasClient nylas = new NylasClient.Builder(dotenv.get("NYLAS_API_KEY")).apiUri(dotenv.get("NYLAS_API_URI")).build();
 
         List<EmailName> emailNames = new ArrayList<>();
         emailNames.add(new EmailName(email, name));
@@ -28,7 +28,7 @@ public class Main {
                     subject("Complaint from " + name + " - " + email).
                     body(comments).build();
 
-            nylas.messages().send(dotenv.get("GRANT_ID"), requestBody);
+            nylas.messages().send(dotenv.get("NYLAS_GRANT_ID"), requestBody);
             //Print a friendly message
             return ("<!DOCTYPE html>" +
                     "<html><head>" +
@@ -63,10 +63,10 @@ public class Main {
                         "<br>" +
                         "<form method=\"post\">" +
                         "<label for=\"name\" class=\"font-bold\">Name  </label>" +
-                        "<input type=\"text\" name=\"name\" placeholder=\"Your name\"></input>" +
+                        "<input type=\"text\" name=\"name\" placeholder=\"Devrel\"></input>" +
                         "<br><br>" +
                         "<label for=\"email\" class=\"font-bold\">Email  </label>" +
-                        "<input type=\"text\" name=\"email\" placeholder=\"Your email\"></input>" +
+                        "<input type=\"text\" name=\"email\" placeholder=\"devrel@nylas.com\"></input>" +
                         "<br><br>" +
                         "<p class=\"font-bold\">Comments</p>" +
                         "<textarea name=\"comments\"\n" +
