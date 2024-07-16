@@ -25,7 +25,7 @@ public class Main {
 
         try {
             SendMessageRequest requestBody = new SendMessageRequest.Builder(emailNames).
-                    subject("Complaint from " + name + " - " + email).
+                    subject("Message from " + name + " - " + email).
                     body(comments).build();
 
             nylas.messages().send(dotenv.get("NYLAS_GRANT_ID"), requestBody);
@@ -53,7 +53,7 @@ public class Main {
                 "<!DOCTYPE html>" +
                         "<html>" +
                         "<head>" +
-                        "<title>Complaint Form</title>" +
+                        "<title>Email Form</title>" +
                         "<script src=\"https://cdn.tailwindcss.com\"></script>" +
                         "</head>" +
                         "<body>" +
